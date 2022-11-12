@@ -1,0 +1,11 @@
+export namespace AccountLogin {
+    export const topic = 'account.login.command'
+    export class Request{
+        email:string;
+        password:string;
+    }
+
+    export class Response{
+        acces_token: string;
+    }
+}
