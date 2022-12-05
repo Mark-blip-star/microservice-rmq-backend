@@ -17,10 +17,13 @@
     "@nestjs/passport": "^9.0.0",
     "@nestjs/platform-express": "^9.0.0",
     "@types/bcrypt": "^5.0.0",
+    "@types/passport-jwt": "^3.0.7",
     "bcrypt": "^5.1.0",
+    "class-validator": "^0.13.2",
     "jsonwebtoken": "^8.5.1",
     "nestjs-rmq": "^2.8.0",
     "passport": "^0.6.0",
+    "passport-jwt": "^4.0.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.0.0",
     "tslib": "^2.3.0"

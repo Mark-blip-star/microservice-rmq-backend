@@ -4,6 +4,7 @@ import { UserEntity } from '../app/entities/user.entity';
 import { UserRepository } from '../app/repositories/user.repository';
 import { loginDto, registerDto } from './auth.controller';
 import {JwtService} from "@nestjs/jwt"
+import { AccountLogin, AccountRegister } from '@purple/contracts';
 
 @Injectable()
 export class AuthService {
@@ -12,7 +13,7 @@ export class AuthService {
         private readonly jwtService:JwtService
         ){}
 
-    async register({email,password,name}: registerDto){
+    async register({email,password,name}: AccountRegister.Request){
         const ifUserExist = await this.userRepository.findUser(email)
         if(ifUserExist) throw new Error('User is already exist')
         
@@ -21,7 +22,7 @@ export class AuthService {
         return {email:newUser.email}
     }
 
-    async validateUser({email,password}: loginDto){
+    async validateUser({email,password}: AccountLogin.Request){
         const ifUserExist = await this.userRepository.findUser(email)
         if(!ifUserExist) throw new Error('User doesn`t exist')
         
