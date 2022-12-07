@@ -1,17 +1,32 @@
-import { Controller, Get, Post } from '@nestjs/common';
-
+import { Body, Controller, Post, UnauthorizedException } from '@nestjs/common';
+import { RMQService } from 'nestjs-rmq';
+import { AccountLogin,AccountRegister } from "@purple/contracts"
+import { LoginDto } from '../dtos/login.dto';
+import { RegisterDto } from '../dtos/register.dto';
 
 @Controller('auth')
 export class AuthController {
-  constructor() {}
+  constructor(private readonly rmqService:RMQService) {}
 
   @Post('register')
-  async register() {
-    
+  async register(@Body() dto:RegisterDto) {
+    try{  
+      return await this.rmqService.send<AccountRegister.Request,AccountRegister.Response>(AccountRegister.topic,dto)
+    }catch(error){  
+      if(error) {
+        throw new UnauthorizedException(error.message,error.status)
+      }
+    }
   }
 
   @Post('login')
-  async login() {
-    
+  async login(@Body() dto:LoginDto) {
+    try{
+      return await this.rmqService.send<AccountLogin.Request,AccountLogin.Response>(AccountLogin.topic,dto)
+    }catch(error:any){
+      if(error) {
+        throw new UnauthorizedException(error.message,error.status)
+      }
+    }
   }
 }

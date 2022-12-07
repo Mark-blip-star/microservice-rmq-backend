@@ -16,7 +16,7 @@ import { JwtModule } from '@nestjs/jwt';
     RMQModule.forRootAsync(getRmqConfig()),
     JwtModule.registerAsync(getJwtConfig()),
   ],
-  controllers: [AppController,AuthController],
-  providers: [AppService],
+  controllers: [AuthController],
+  providers: [],
 })
 export class AppModule {}

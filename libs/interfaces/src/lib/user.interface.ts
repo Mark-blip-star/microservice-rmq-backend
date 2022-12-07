@@ -3,10 +3,23 @@ export enum UserRole {
     TEACHER = 'Teacher'
 }
 
+export enum PurchaseState {
+    STARTED = 'Started',
+    TEACHER = 'WaitingForPayment',
+    PURCHASED = 'Purchased',
+    CENCELED = 'Cenceled'
+}
+
 export interface IUser {
     _id?:string
     name:string
     role:UserRole,
     password?:string,
     email:string
+    courses?:IUserCourses[]
+}
+
+export interface IUserCourses{
+    courseId:string,
+    purchaseState:PurchaseState
 }

@@ -3,17 +3,6 @@ import { UserRole } from '@purple/interfaces';
 import { AuthService } from './auth.service';
 import {AccountLogin,AccountRegister} from "@purple/contracts"
 import {RMQRoute, RMQValidate} from "nestjs-rmq"
-export class registerDto{
-    email:string;
-    password:string;
-    name:string;
-    role:UserRole;
-}
-
-export class loginDto{
-    email:string;
-    password:string;
-}
 
 @Controller()
 export class AuthController {
