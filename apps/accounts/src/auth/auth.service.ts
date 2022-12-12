@@ -5,12 +5,14 @@ import { UserRepository } from '../app/repositories/user.repository';
 // import { loginDto, registerDto } from './auth.controller';
 import {JwtService} from "@nestjs/jwt"
 import { AccountLogin, AccountRegister } from '@purple/contracts';
+import { ConfigService } from '@nestjs/config';
 
 @Injectable()
 export class AuthService {
     constructor(
         private readonly userRepository:UserRepository,
-        private readonly jwtService:JwtService
+        private readonly jwtService:JwtService,
+        private readonly configService:ConfigService
         ){}
 
     async register({email,password,name}: AccountRegister.Request){
@@ -25,16 +27,17 @@ export class AuthService {
     async validateUser({email,password}: AccountLogin.Request){
         const ifUserExist = await this.userRepository.findUser(email)
         if(!ifUserExist) throw new Error('User doesn`t exist')
-        
+
         const user = new UserEntity(ifUserExist)
         const isCorrectPassport = await user.comparePassword(password)
+        
         if(!isCorrectPassport) throw new Error('Login or passport is incorrect')
-        return {email:user.email}
+        return {id:user._id}
     }
 
-    async login(email:string){
+    async login(id:string){
         return {
-            acces_token: await  this.jwtService.signAsync(email)
+            acces_token: await  this.jwtService.signAsync({id},{secret:this.configService.get('JWT_SECRET')})
         }
     }
 }

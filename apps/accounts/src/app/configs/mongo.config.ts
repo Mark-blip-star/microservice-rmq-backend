@@ -11,5 +11,5 @@ export const getMongoConfig = ():MongooseModuleAsyncOptions => {
 }
 
 const getMongoString = (configService:ConfigService) => {
-    return 'mongodb+srv://Mark:Mark200318@cluster0.1huwxev.mongodb.net/?retryWrites=true&w=majority'
+    return 'mongodb+srv://Mark:w4GTEMJl5jvyhsnP@cluster0.1huwxev.mongodb.net/?retryWrites=true&w=majority'
 }

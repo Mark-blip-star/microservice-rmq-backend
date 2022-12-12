@@ -21,6 +21,7 @@
     "bcrypt": "^5.1.0",
     "class-validator": "^0.13.2",
     "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.8.0",
     "nestjs-rmq": "^2.8.0",
     "passport": "^0.6.0",
     "passport-jwt": "^4.0.0",

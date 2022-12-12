@@ -1,5 +1,6 @@
 import { IUser, UserRole } from "@purple/interfaces";
 import {genSalt,hash,compare} from "bcrypt"
+
 export class UserEntity implements IUser{
     _id?: string;
     role: UserRole;
@@ -18,6 +19,11 @@ export class UserEntity implements IUser{
     public async setPassword(password:string){
         const salt = await genSalt(4)
         this.password = await hash(password,salt)
+        return this
+    }
+
+    public async changeUserName(newName:string){
+        this.name = newName
         return this
     }
 

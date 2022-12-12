@@ -1,8 +1,9 @@
-import { Body, Controller, Post, UnauthorizedException } from '@nestjs/common';
+import { Body, Controller, Post, UnauthorizedException, UseGuards } from '@nestjs/common';
 import { RMQService } from 'nestjs-rmq';
 import { AccountLogin,AccountRegister } from "@purple/contracts"
 import { LoginDto } from '../dtos/login.dto';
 import { RegisterDto } from '../dtos/register.dto';
+import { JWTAuthGuard } from '../guards/jwt.auth.guard';
 
 @Controller('auth')
 export class AuthController {
