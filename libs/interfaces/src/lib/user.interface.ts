@@ -5,7 +5,7 @@ export enum UserRole {
 
 export enum PurchaseState {
     STARTED = 'Started',
-    TEACHER = 'WaitingForPayment',
+    WAIT_FOR_PAYMENT = 'WaitingForPayment',
     PURCHASED = 'Purchased',
     CENCELED = 'Cenceled'
 }

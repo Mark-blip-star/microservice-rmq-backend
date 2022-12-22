@@ -9,6 +9,7 @@ import { JWTAuthGuard } from '../guards/jwt.auth.guard';
 export class AuthController {
   constructor(private readonly rmqService:RMQService) {}
 
+  @UseGuards(JWTAuthGuard)
   @Post('register')
   async register(@Body() dto:RegisterDto) {
     try{  

@@ -1,8 +1,8 @@
 import { Injectable, Module } from "@nestjs/common";
 import {InjectModel } from "@nestjs/mongoose"
 import {Model} from "mongoose"
-    import { UserModel } from "../../models/user.model";
-import { UserEntity } from "../entities/user.entity";
+    import { UserModel } from "../models/user.model";
+import { UserEntity } from "../user/entities/user.entity";
 
 @Injectable()
 export class UserRepository{
@@ -19,8 +19,8 @@ export class UserRepository{
         return this.userModel.findOne({email})
     }
 
-    async findUserById(id:string){
-        return this.userModel.findById({id})
+    async findUserById(_id:string){
+        return this.userModel.findById({_id})
     }
 
     async deleteUser(email:string){

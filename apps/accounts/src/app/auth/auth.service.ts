@@ -1,8 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { UserRole } from '@purple/interfaces';
-import { UserEntity } from '../app/entities/user.entity';
-import { UserRepository } from '../app/repositories/user.repository';
-// import { loginDto, registerDto } from './auth.controller';
+import { UserEntity } from '../user/entities/user.entity';
+import { UserRepository } from '../repositories/user.repository';
 import {JwtService} from "@nestjs/jwt"
 import { AccountLogin, AccountRegister } from '@purple/contracts';
 import { ConfigService } from '@nestjs/config';

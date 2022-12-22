@@ -11,9 +11,8 @@ export class UserController {
 
   @UseGuards(JWTAuthGuard)
   @Post('change-user-name')
-  async changeUserName(@UserId() userId:string,@Body() {newName}:UserChangeNameDto,@Request() req) {
+  async changeUserName(@UserId() userId:string,@Body() {newName}:UserChangeNameDto) {
     try{  
-      console.log(111)
       if(!userId) throw new UnauthorizedException()
       return await this.rmqService.send<AccountChangeUserName.Request,AccountChangeUserName.Response>(AccountChangeUserName.topic,{userId,newName})
     }catch(error){  
